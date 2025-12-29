@@ -1,39 +1,72 @@
-# 📡 Práctica Didáctica: Arquitectura Cliente-Servidor (TCP Sockets)
+# Educational Practice: Client-Server Architecture (TCP Sockets)
 
-Este proyecto es una implementación básica de una arquitectura **Cliente-Servidor** en Java utilizando la clase `java.net.Socket`.
+This project is a basic implementation of a **Client-Server** architecture in Java using the `java.net.Socket` class.
 
-El objetivo de esta actividad es comprender cómo se establece una conexión local, cómo se produce el **flujo de datos síncrono** (entrada/salida) y cómo interactúan dos procesos independientes a través de un puerto de red.
-
----
-
-## 📂 Estructura del Proyecto
-
-El proyecto consta de dos archivos fuente principales:
-
-- **`Server.java`**: Actúa como el receptor. Abre un puerto y espera pasivamente a que alguien se conecte.
-- **`Client.java`**: Actúa como el emisor/iniciador. Busca al servidor y solicita establecer una conexión.
+The goal of this activity is to understand how a connection is established, how **data flow** (input/output) occurs, and how two independent processes interact through a network port.
 
 ---
 
-## 🛠️ Requisitos Previos
+## Project Structure
 
-- **Java Development Kit (JDK)** instalado (versión 8 o superior).
-- **Visual Studio Code** (o cualquier otro IDE/Terminal).
-- Ambos archivos deben estar en la misma carpeta o paquete para esta prueba básica.
+The project consists of two main source files:
+
+- **`Server.java`**: Acts as the receiver. It opens a port and passively waits for someone to connect.
+- **`Client.java`**: Acts as the sender/initiator. It looks for the server and requests to establish a connection.
 
 ---
 
-## 🚀 Guía de Ejecución (Paso a Paso)
+## Execution Guide (Step-by-Step)
 
-Para que la comunicación funcione, el orden de ejecución es **crítico**.
+For communication to work, the order of execution is **critical**.
 
-### 1. Compilar el código
+### 1. Compile the code
 
-Abre tu terminal en la carpeta donde están los archivos y ejecuta:
+Open your terminal in the folder where the files are located and run:
 
-```bash
-javac Server.java Client.java
-2. Iniciar el Servidor (¡IMPORTANTE: Hacer esto primero!)El servidor debe estar "escuchando" antes de que el cliente intente llamar.Bashjava Server
-Salida esperada: Verás el mensaje Connecting to Client... y el cursor se quedará parpadeando. El servidor está bloqueado esperando una conexión (accept()).3. Iniciar el ClienteAbre una segunda terminal (o una nueva pestaña en VS Code) y ejecuta:Bashjava Client
-Salida esperada: Verás Successfully Connected!.En la terminal del Servidor aparecerá también Successfully Connected!.4. Flujo de ComunicaciónEn la terminal del Cliente, el programa te pedirá: Please enter your name:.Escribe tu nombre (ej. "Carlos") y pulsa Enter.El Cliente envía el dato al Servidor.El Servidor recibe el nombre, lo muestra y responde con un saludo.El Cliente recibe el saludo y lo muestra: Server: Hello, Carlos.Ambos programas se cierran automáticamente.🧠 Conceptos Clave (Didáctica)En este código se ilustran los siguientes conceptos de redes:ConceptoExplicación en el códigoServerSocketEs como el "teléfono fijo" del servidor. Se queda esperando una llamada en un puerto específico (5000).SocketEs el "cable virtual" que se crea una vez que la llamada es aceptada. Permite enviar y recibir datos.Localhost (127.0.0.1)Dirección IP de bucle invertido. Significa "esta misma máquina". El cliente busca al servidor en su propio ordenador.Puerto 5000Es la puerta lógica por la que entran los datos. Ambos deben coincidir en este número.Bloqueo (Blocking I/O)Observa cómo serverSocket.accept() y reader.readLine() detienen la ejecución del programa hasta que ocurre algo externo. Esto es una comunicación síncrona.Streams (Flujos)getInputStream y getOutputStream son los canales unidireccionales por donde viajan los bytes de un lado a otro.⚠️ Posibles Errores ComunesConnection refused: Ocurre si ejecutas el Client sin haber encendido antes el Server. El cliente llama a una puerta donde nadie escucha.Address already in use: Ocurre si intentas arrancar el Server dos veces seguidas sin cerrar el anterior. El puerto 5000 sigue ocupado por la instancia anterior.
-```
+### 2. Start the Server (IMPORTANT: Do this first!)
+
+The server must be "listening" before the client tries to call.
+
+Expected Output: You will see the message Connecting to Client... and the cursor will blink. The server is blocked waiting for a connection (accept()).
+
+### 3. Start the Client
+
+Open a second terminal (or a new tab in VS Code) and run:
+
+Expected Output: You will see Successfully Connected!.
+
+In the Server terminal, Successfully Connected! will also appear.
+
+### 4. Communication Flow
+
+In the Client terminal, the program will ask: Please enter your name:.
+
+Type your name (e.g., "Adrián") and press Enter.
+
+The Client sends the data to the Server.
+
+The Server receives the name, displays it, and responds with a greeting.
+
+The Client receives the greeting and displays it: Server: Hello, Adrián.
+
+Both programs close automatically.
+
+---
+
+## Key Concepts (Didactic)
+
+This code illustrates the following networking
+
+- **`concepts`**: ConceptExplanation in code
+
+- **`ServerSocket`**: It acts like the server's "landline phone". It stays waiting for a call on a specific port (5000).
+
+- **`Socket`**: It is the "virtual cable" created once the call is accepted. It allows sending and receiving data.
+
+- **`Localhost (127.0.0.1)`**: Loopback IP address. It means "this same machine". The client looks for the server on its own computer.
+
+- **`Port 5000`**: It is the logical door through which data enters. Both must agree on this number.
+
+- **`Blocking I/O`**: Notice how serverSocket.accept() and reader.readLine() stop the program execution until an external event occurs. This is synchronous communication.
+
+- **`Streams`**: **getInputStream** and **getOutputStream** are the unidirectional channels through which bytes travel from one side to the other.
