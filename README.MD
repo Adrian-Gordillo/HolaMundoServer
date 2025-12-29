@@ -31,7 +31,7 @@ Expected Output: You will see the message Connecting to Client... and the cursor
 
 ### 3. Start the Client
 
-Open a second terminal (or a new tab in VS Code) and run:
+Open a second terminal or a new tab and run:
 
 Expected Output: You will see Successfully Connected!.
 
